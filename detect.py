@@ -177,7 +177,46 @@ def run(
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     c = int(cls)  # integer class
-                    label = names[c] if hide_conf else f'{names[c]}'
+                    if names[c] == '0':
+                        label = '고추'
+                    elif names[c] == '1':
+                        label = '검거세미밤나방'
+                    elif names[c] == '2':
+                        label = '꽃노랑총채벌레'
+                    elif names[c] == '3':
+                        label = '담배가루이'
+                    elif names[c] == '4':
+                        label = '담배거세미나방'
+                    elif names[c] == '5':
+                        label = '담배나방'
+                    elif names[c] == '6':
+                        label = '도둑나방'
+                    elif names[c] == '7':
+                        label = '먹노린재'
+                    elif names[c] == '8':
+                        label = '목화바둑명나방'
+                    elif names[c] == '9':
+                        label = '무잎벌'
+                    elif names[c] == '10':
+                        label = '배추좀나방'
+                    elif names[c] == '11':
+                        label = '배추흰나비'
+                    elif names[c] == '12':
+                        label = '벼룩잎벌레'
+                    elif names[c] == '14':
+                        label = '복숭아혹진딧물'
+                    elif names[c] == '15':
+                        label = '비단노린재'
+                    elif names[c] == '16':
+                        label = '썩덩나무노린재'
+                    elif names[c] == '18':
+                        label = '열대거세미나방'
+                    elif names[c] == '19':
+                        label = '큰28점박이무당벌레'
+                    elif names[c] == '20':
+                        label = '톱다리개미허리노린재'
+                    elif names[c] == '21':
+                        label = '파밤나방'
                     confidence = float(conf)
                     confidence_str = f'{confidence:.2f}'
 
@@ -192,7 +231,7 @@ def run(
 
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
-                        label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                        label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')    
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
